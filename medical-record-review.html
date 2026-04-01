@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Assessment &ndash; Medical Record Review | I&rsquo;m Hiring VA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">I&rsquo;m Hiring VA</div>
+  <h1>Skills Assessment</h1>
+  <div class="subtitle">Medical Record Review</div>
+</div>
+
+<div class="container">
+  <div class="timer-bar" id="timerBar" style="display:none;">
+    <div class="timer-label">⏱ Time Remaining</div>
+    <div class="timer-display" id="timerDisplay">01:30:00</div>
+  </div>
+</div>
+
+<div class="start-screen" id="startScreen">
+  <h2>Before You Begin</h2>
+  <div class="instructions-box">
+    <ul>
+      <li>This test has <strong>Part 1 (About You)</strong> + <strong>Part 2 (Skills Assessment)</strong>.</li>
+      <li>Time limit: <strong>90 minutes</strong>. Timer starts when you click Start.</li>
+      <li>Do <strong>NOT</strong> use Google, ChatGPT, or any reference materials.</li>
+      <li>Answer in <strong>your own words</strong>. AI-generated answers = disqualification.</li>
+      <li>Be specific. Vague answers score zero.</li>
+      <li>If you don&rsquo;t know, say so honestly.</li>
+      <li>Passing score: <strong>85%</strong></li>
+    </ul>
+  </div>
+  <div class="warn-box">⚠️ Once you start, the timer cannot be paused. Make sure you have 90 uninterrupted minutes.</div>
+  <button class="btn-start" onclick="startTest()">Start Test &rarr;</button>
+</div>
+
+<div class="sending-overlay" id="sendingOverlay"><div class="spinner"></div>Submitting your test&hellip;</div>
+
+<form class="test-form container" id="testForm">
+
+
+<div class="section">
+  <div class="section-title">PART 1: About You</div>
+  <div class="section-subtitle">This replaces a traditional interview. There are no wrong answers — we value honesty. Having other clients will NOT be held against you. Dishonesty WILL.</div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">•</span><span>Your full name <span class="required">*</span></span></div>
+    <input type="text" class="text-input" name="full_name" required placeholder="Full name">
+  </div>
+  <div class="question">
+    <div class="q-text"><span class="q-number">•</span><span>Email address <span class="required">*</span></span></div>
+    <input type="email" class="text-input" name="email" required placeholder="Email address">
+  </div>
+
+  <h3 style="color:var(--navy);margin:24px 0 16px;font-size:1.05rem;">A. Your Work Setup</h3>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.1</span><span>What device(s) do you use for work?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="checkbox" name="device" value="Desktop"> Desktop computer</label>
+      <label class="check-item"><input type="checkbox" name="device" value="Laptop"> Laptop</label>
+      <label class="check-item"><input type="checkbox" name="device" value="Tablet"> Tablet</label>
+      <label class="check-item"><input type="checkbox" name="device" value="Phone only"> Phone only</label>
+    </div>
+    <div class="field-row" style="margin-top:10px;"><span class="field-label">Specs (if known):</span><input type="text" class="text-input" name="device_specs" placeholder="RAM, processor, etc."></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.2</span><span>Internet connection type and speed?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="internet" value="Fiber"> Fiber</label>
+      <label class="check-item"><input type="radio" name="internet" value="DSL"> DSL</label>
+      <label class="check-item"><input type="radio" name="internet" value="Mobile data"> Mobile data / pocket WiFi</label>
+      <label class="check-item"><input type="radio" name="internet" value="Broadband"> Broadband (cable)</label>
+      <label class="check-item"><input type="radio" name="internet" value="Unknown"> I don&rsquo;t know</label>
+    </div>
+    <div class="field-row" style="margin-top:10px;"><span class="field-label">Speed (Mbps):</span><input type="text" class="text-input" name="internet_speed" placeholder="e.g., 50 Mbps"></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.3</span><span>Backup internet connection?</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="backup_internet" value="Yes"> Yes</label>
+      <label><input type="radio" name="backup_internet" value="No"> No</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="backup_internet_detail" placeholder="If yes, describe..." rows="2" style="min-height:60px;"></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.4</span><span>Backup power source?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="backup_power" value="UPS"> Yes &mdash; UPS</label>
+      <label class="check-item"><input type="radio" name="backup_power" value="Generator"> Yes &mdash; Generator</label>
+      <label class="check-item"><input type="radio" name="backup_power" value="Both"> Yes &mdash; Both</label>
+      <label class="check-item"><input type="radio" name="backup_power" value="No"> No</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.5</span><span>Work environment?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="work_env" value="Private office"> Dedicated home office (private room)</label>
+      <label class="check-item"><input type="radio" name="work_env" value="Shared room"> Shared room / common area</label>
+      <label class="check-item"><input type="radio" name="work_env" value="Co-working"> Co-working space</label>
+      <label class="check-item"><input type="radio" name="work_env" value="Other"> Other</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="noise_level" placeholder="Describe noise & privacy level..." rows="2" style="min-height:60px;"></textarea></div>
+  </div>
+
+  <h3 style="color:var(--navy);margin:24px 0 16px;font-size:1.05rem;">B. Current Workload & Availability</h3>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.6</span><span>Do you currently have other clients or a full-time job?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="other_clients" value="VA clients"> Yes &mdash; other VA/freelance clients</label>
+      <label class="check-item"><input type="radio" name="other_clients" value="FT + VA"> Yes &mdash; full-time job + VA on the side</label>
+      <label class="check-item"><input type="radio" name="other_clients" value="PT + VA"> Yes &mdash; part-time job + VA on the side</label>
+      <label class="check-item"><input type="radio" name="other_clients" value="Fully available"> No &mdash; fully available</label>
+    </div>
+    <div class="warn-box" style="margin-left:38px;margin-right:0;">Having other clients is 100% okay. We just need to know so we can plan. This will NOT be used against you.</div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.7</span><span>If you have other clients, describe the work type and hours/week. No need to name clients.</span></div>
+    <div class="answer-area"><textarea name="client_details" class="large" placeholder='Example: "Client 1 — Medical billing for dermatology, 15 hrs/week"'></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.8</span><span>Hours/week available for this role?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="avail_hours" value="10-15"> 10&ndash;15 hrs/week</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="15-20"> 15&ndash;20 hrs/week</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="20-30"> 20&ndash;30 hrs/week</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="30-40"> 30&ndash;40 hrs/week (full-time)</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="40+"> 40+ hrs/week</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.9</span><span>Typical working hours? (Include timezone)</span></div>
+    <div class="answer-area"><input type="text" class="text-input" name="working_hours" placeholder="e.g., 9 PM – 6 AM PHT (US Eastern hours)"></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.10</span><span>If you have other clients and get this role, how will you manage your time? Be specific.</span></div>
+    <div class="answer-area"><textarea name="time_management" class="large" placeholder="Your strategy..."></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.11</span><span>Ever let go of a client or been let go? What happened and what did you learn?</span></div>
+    <div class="answer-area"><textarea name="letgo_experience" class="large" placeholder="Your answer..."></textarea></div>
+  </div>
+
+  <h3 style="color:var(--navy);margin:24px 0 16px;font-size:1.05rem;">C. Experience & Self-Assessment</h3>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.12</span><span>Years of healthcare/medical field experience?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="years_exp" value="<1"> Less than 1 year</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="1-3"> 1&ndash;3 years</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="3-5"> 3&ndash;5 years</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="5-10"> 5&ndash;10 years</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="10+"> 10+ years</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.13</span><span>Tools/software you&rsquo;ve ACTUALLY used at work? (Not YouTube tutorials)</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="checkbox" name="tools" value="EHR/EMR"> EHR/EMR systems</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="PM software"> Practice management software</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Trello"> Trello</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="FreshBooks"> FreshBooks or similar</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Cloud storage"> Dropbox / Google Drive / OneDrive</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="E-sign"> PandaDoc / DocuSign</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Slack"> Slack</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Video"> Zoom / Google Meet</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="MS Office"> Microsoft Office Suite</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Scheduling"> Calendly or similar</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="CRM"> CRM systems</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Billing"> Billing/claims software</label>
+    </div>
+    <div class="field-row" style="margin-top:8px;"><span class="field-label">Specify which ones:</span><input type="text" class="text-input" name="tools_detail" placeholder="e.g., eClinicalWorks, Availity..."></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.14</span><span>Biggest weakness in virtual work? Be honest.</span></div>
+    <div class="answer-area"><textarea name="weakness" class="large" placeholder="Your answer..."></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.15</span><span>Why should we pick you over someone with similar experience?</span></div>
+    <div class="answer-area"><textarea name="why_you" class="large" placeholder="Your answer..."></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.16</span><span>Expected rate (USD/hr)?</span></div>
+    <div class="field-row"><span class="field-label">$</span><input type="text" class="text-input" name="rate" placeholder="e.g., 7" style="max-width:120px;"><span style="font-size:0.85rem;color:var(--text-light);">per hour</span></div>
+    <p style="font-size:0.83rem;color:var(--text-light);padding-left:38px;font-style:italic;">Be reasonable &mdash; not too low, not too high.</p>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.17</span><span>Comfortable being paid via Wise?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="wise" value="Yes"> Yes</label>
+      <label class="check-item"><input type="radio" name="wise" value="No"> No &mdash; I prefer another method</label>
+      <label class="check-item"><input type="radio" name="wise" value="Will set up"> Never used Wise but willing to set it up</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.18</span><span>Anything else you want us to know?</span></div>
+    <div class="answer-area"><textarea name="anything_else" class="large" placeholder="Optional..."></textarea></div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-title">PART 2: Skills Assessment</div>
+  <div class="section-subtitle">Medical Record Review &mdash; 17 Questions</div>
+  <h3 class="section-heading">Section A: Multiple Choice (1 point each)</h3>
+  <p class="section-note">Designed to separate experienced reviewers from beginners.</p><div class="question">
+    <div class="q-text"><span class="q-number">1</span><span>In a SOAP note, which section contains the physician&rsquo;s clinical interpretation and diagnosis?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q1" value="A"> A) Subjective</label>
+      <label class="choice-item"><input type="radio" name="q1" value="B"> B) Objective</label>
+      <label class="choice-item"><input type="radio" name="q1" value="C"> C) Assessment</label>
+      <label class="choice-item"><input type="radio" name="q1" value="D"> D) Plan</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">2</span><span>Patient in car accident 06/15/2023, first medical visit 09/02/2023. Why is this significant?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q2" value="A"> A) Not significant</label>
+      <label class="choice-item"><input type="radio" name="q2" value="B"> B) The 2.5-month gap creates a causation issue &mdash; defense will argue injuries weren&rsquo;t caused by the accident</label>
+      <label class="choice-item"><input type="radio" name="q2" value="C"> C) Case is automatically dismissed</label>
+      <label class="choice-item"><input type="radio" name="q2" value="D"> D) Only matters if patient went to ER</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">3</span><span>&ldquo;PD&rdquo; in workers&rsquo; comp stands for:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q3" value="A"> A) Patient Data</label>
+      <label class="choice-item"><input type="radio" name="q3" value="B"> B) Prior Diagnosis</label>
+      <label class="choice-item"><input type="radio" name="q3" value="C"> C) Permanent Disability</label>
+      <label class="choice-item"><input type="radio" name="q3" value="D"> D) Physician Directive</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">4</span><span>TRICK: MRI shows &ldquo;broad-based disc bulge at L4-L5 with mild foraminal narrowing.&rdquo; This finding is:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q4" value="A"> A) Always caused by trauma</label>
+      <label class="choice-item"><input type="radio" name="q4" value="B"> B) Potentially degenerative or traumatic &mdash; clinical correlation needed</label>
+      <label class="choice-item"><input type="radio" name="q4" value="C"> C) Not clinically significant</label>
+      <label class="choice-item"><input type="radio" name="q4" value="D"> D) Always requires surgery</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">5</span><span>Correct order for indexing medical records in a legal case?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q5" value="A"> A) Alphabetical by provider</label>
+      <label class="choice-item"><input type="radio" name="q5" value="B"> B) Chronological by DOS, grouped by provider/facility, with master index</label>
+      <label class="choice-item"><input type="radio" name="q5" value="C"> C) Grouped by insurance carrier</label>
+      <label class="choice-item"><input type="radio" name="q5" value="D"> D) Random with cover sheet</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">6</span><span>Operative report: &ldquo;discectomy at L5-S1 with instrumented fusion.&rdquo; This means:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q6" value="A"> A) Surgeon removed disc and implanted hardware to stabilize spine at L5-S1</label>
+      <label class="choice-item"><input type="radio" name="q6" value="B"> B) Diagnostic injection</label>
+      <label class="choice-item"><input type="radio" name="q6" value="C"> C) Muscle tear repair</label>
+      <label class="choice-item"><input type="radio" name="q6" value="D"> D) Kidney stone removal</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">7</span><span>Difference between treating physician records and QME/IME records?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q7" value="A"> A) Same thing</label>
+      <label class="choice-item"><input type="radio" name="q7" value="B"> B) Treating records = ongoing care; QME/IME = evaluations for legal/insurance purposes</label>
+      <label class="choice-item"><input type="radio" name="q7" value="C"> C) QME records are billing records</label>
+      <label class="choice-item"><input type="radio" name="q7" value="D"> D) Treating records only for PI cases</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">8</span><span>1,500 pages: pages 401&ndash;600 are duplicates, 1201&ndash;1300 are blank. Rate: $225 flat/first 250, $1.50/page after, $0.25 for blanks/dupes. Total?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q8" value="A"> A) $225 flat</label>
+      <label class="choice-item"><input type="radio" name="q8" value="B"> B) $225 + (950 &times; $1.50) + (300 &times; $0.25) = $1,725</label>
+      <label class="choice-item"><input type="radio" name="q8" value="C"> C) $225 + (1,250 &times; $1.50) = $2,100</label>
+      <label class="choice-item"><input type="radio" name="q8" value="D"> D) Can&rsquo;t bill for duplicates</label>
+    </div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section B: Short Answer (4 points each)</h3>
+  <div class="question">
+    <div class="q-text"><span class="q-number">9</span><span>You receive 2,000 pages for an ortho spine case. Walk through your ENTIRE review process: file organization, indexing, what you look for, summary structure, QC, delivery.</span></div>
+    <div class="answer-area"><textarea name="q9" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">10</span><span>Explain the difference between: (a) Progress notes, (b) Consultation reports, (c) Operative reports, (d) Discharge summaries, (e) Imaging reports. What do you extract from each?</span></div>
+    <div class="answer-area"><textarea name="q10" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">11</span><span>What is &ldquo;apportionment&rdquo; in MRR? How do you identify it in records? Give a specific example.</span></div>
+    <div class="answer-area"><textarea name="q11" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">12</span><span>Define these abbreviations: (a) ROM, (b) WNL, (c) ADL, (d) MMI, (e) FCE, (f) EMG/NCV, (g) Dx, (h) Hx, (i) Tx, (j) PRN</span></div>
+    <div class="answer-area"><textarea name="q12" class="xl" placeholder="Your answer..."></textarea></div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section C: Advanced Scenarios (6 points each)</h3>
+  <div class="question">
+    <div class="scenario"><strong>SCENARIO:</strong> WC case. DOI: 03/10/2022, lumbar spine. Records: (1) ER on DOI &mdash; acute back pain after lifting, (2) Pre-existing 2019 L4-L5 herniation, (3) Post-injury MRI &mdash; L4-L5 worsened + new L5-S1, (4) Treating surgeon says both industrial, (5) QME says L4-L5 is pre-existing, only L5-S1 industrial.</div>
+    <div class="q-text"><span class="q-number">13</span><span>How would you summarize this case? How would you flag conflicting opinions? What details for the attorney?</span></div>
+    <div class="answer-area"><textarea name="q13" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="scenario"><strong>SCENARIO:</strong> Attorney sends 800 pages: &ldquo;Just summarize the important stuff.&rdquo; No cover letter, no direction. Records include ER, PT, pain mgmt, ortho, psych, pharmacy, employment records.</div>
+    <div class="q-text"><span class="q-number">14</span><span>How do you handle this? What do you ask? How do you decide what&rsquo;s important? What format?</span></div>
+    <div class="answer-area"><textarea name="q14" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="scenario"><strong>SCENARIO:</strong> You notice: (1) Patient name misspelled on several docs, (2) A 2025 note references a 2023 surgery as &ldquo;last month,&rdquo; (3) PT note has another patient&rsquo;s name in body text but correct name in header.</div>
+    <div class="q-text"><span class="q-number">15</span><span>What do these suggest? How would you flag them? Why do they matter legally?</span></div>
+    <div class="answer-area"><textarea name="q15" class="xl" placeholder="Your answer..."></textarea></div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section D: Practical Application (5 points each)</h3>
+  <div class="question">
+    <div class="q-text"><span class="q-number">16</span><span>Extract and organize clinically relevant info from this entry as you would in a professional summary:<br><br>&ldquo;03/15/2024 &mdash; Dr. Martinez, Ortho Consult. 45 y/o male, persistent LBP radiating to left LE x 6 months s/p workplace injury 09/10/2023. Pain 7/10, worse sitting/bending. PMH: HTN, DM2, prior lumbar strain 2019 (resolved). PE: L4-L5 paraspinal tenderness, positive left SLR at 40&deg;, ROM: flexion 40&deg;/60&deg;, extension 10&deg;/25&deg;, motor 5/5, sensation intact. MRI 03/01/2024: L4-L5 HNP with left foraminal stenosis. Dx: L4-L5 HNP with left L5 radiculopathy, likely industrial. Plan: ESI x3, PT 2x/wk x 6 wks, f/u 6 wks, consider surgery if no improvement.&rdquo;</span></div>
+    <div class="answer-area"><textarea name="q16" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">17</span><span>Attorney asks: &ldquo;Are these injuries caused by the accident?&rdquo; How do you respond? (Tests scope of reviewer vs. physician role.)</span></div>
+    <div class="answer-area"><textarea name="q17" class="xl" placeholder="Your answer..."></textarea></div>
+  </div></div>
+
+<div class="submit-section">
+  <p style="font-weight:600;color:var(--navy);margin-bottom:8px;">Ready to submit?</p>
+  <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:20px;">Double-check your answers. Once submitted, you cannot make changes.</p>
+  <button type="button" class="btn-submit" onclick="submitTest()">Submit My Test &check;</button>
+  <p class="submit-note">Your answers will be sent to imhiringva@proton.me</p>
+</div>
+
+</form>
+
+<div class="success-screen" id="successScreen">
+  <div class="checkmark">✅</div>
+  <h2>Test Submitted Successfully!</h2>
+  <p>Your answers have been sent. We will review and get back to you within 5&ndash;7 business days.</p>
+  <p style="margin-top:16px;font-size:0.9rem;color:var(--text-light);">Thank you for your time and effort.</p>
+</div>
+
+<div class="footer">&copy; 2026 I&rsquo;m Hiring VA &mdash; Confidential Skills Assessment</div>
+
+<script>
+window.TEST_CONFIG = { title: "Medical Record Review", timeMinutes: 90, emailServiceId: "service_kb9sctj", emailTemplateId: "template_5bncogx", emailPublicKey: "2ezKz45u75xrgpH-s" };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    var pk = window.TEST_CONFIG && window.TEST_CONFIG.emailPublicKey;
+    if (pk) emailjs.init(pk);
+  })();
+</script>
+<script src="test-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Assessment &ndash; Workers&rsquo; Comp / PI / AMA Guides 5th Edition / MRR | I&rsquo;m Hiring VA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">I&rsquo;m Hiring VA</div>
+  <h1>Skills Assessment</h1>
+  <div class="subtitle">Workers&rsquo; Comp / PI / AMA Guides 5th Edition / MRR</div>
+</div>
+
+<div class="container">
+  <div class="timer-bar" id="timerBar" style="display:none;">
+    <div class="timer-label">⏱ Time Remaining</div>
+    <div class="timer-display" id="timerDisplay">02:00:00</div>
+  </div>
+</div>
+
+<div class="start-screen" id="startScreen">
+  <h2>Before You Begin</h2>
+  <div class="instructions-box">
+    <ul>
+      <li>This test has <strong>Part 1 (About You)</strong> + <strong>Part 2 (Skills Assessment)</strong>.</li>
+      <li>Time limit: <strong>120 minutes</strong>. Timer starts when you click Start.</li>
+      <li>Do <strong>NOT</strong> use Google, ChatGPT, or any reference materials.</li>
+      <li>Answer in <strong>your own words</strong>. AI-generated answers = disqualification.</li>
+      <li>Be specific. Vague answers score zero.</li>
+      <li>If you don&rsquo;t know, say so honestly.</li>
+      <li>Passing score: <strong>85%</strong></li>
+    </ul>
+  </div>
+  <div class="warn-box">⚠️ Once you start, the timer cannot be paused. Make sure you have 120 uninterrupted minutes.</div>
+  <button class="btn-start" onclick="startTest()">Start Test &rarr;</button>
+</div>
+
+<div class="sending-overlay" id="sendingOverlay"><div class="spinner"></div>Submitting your test&hellip;</div>
+
+<form class="test-form container" id="testForm">
+
+
+<div class="section">
+  <div class="section-title">PART 1: About You</div>
+  <div class="section-subtitle">This replaces a traditional interview. There are no wrong answers — we value honesty. Having other clients will NOT be held against you. Dishonesty WILL.</div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">•</span><span>Your full name <span class="required">*</span></span></div>
+    <input type="text" class="text-input" name="full_name" required placeholder="Full name">
+  </div>
+  <div class="question">
+    <div class="q-text"><span class="q-number">•</span><span>Email address <span class="required">*</span></span></div>
+    <input type="email" class="text-input" name="email" required placeholder="Email address">
+  </div>
+
+  <h3 style="color:var(--navy);margin:24px 0 16px;font-size:1.05rem;">A. Your Work Setup</h3>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.1</span><span>What device(s) do you use for work?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="checkbox" name="device" value="Desktop"> Desktop computer</label>
+      <label class="check-item"><input type="checkbox" name="device" value="Laptop"> Laptop</label>
+      <label class="check-item"><input type="checkbox" name="device" value="Tablet"> Tablet</label>
+      <label class="check-item"><input type="checkbox" name="device" value="Phone only"> Phone only</label>
+    </div>
+    <div class="field-row" style="margin-top:10px;"><span class="field-label">Specs (if known):</span><input type="text" class="text-input" name="device_specs" placeholder="RAM, processor, etc."></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.2</span><span>Internet connection type and speed?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="internet" value="Fiber"> Fiber</label>
+      <label class="check-item"><input type="radio" name="internet" value="DSL"> DSL</label>
+      <label class="check-item"><input type="radio" name="internet" value="Mobile data"> Mobile data / pocket WiFi</label>
+      <label class="check-item"><input type="radio" name="internet" value="Broadband"> Broadband (cable)</label>
+      <label class="check-item"><input type="radio" name="internet" value="Unknown"> I don&rsquo;t know</label>
+    </div>
+    <div class="field-row" style="margin-top:10px;"><span class="field-label">Speed (Mbps):</span><input type="text" class="text-input" name="internet_speed" placeholder="e.g., 50 Mbps"></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.3</span><span>Backup internet connection?</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="backup_internet" value="Yes"> Yes</label>
+      <label><input type="radio" name="backup_internet" value="No"> No</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="backup_internet_detail" placeholder="If yes, describe..." rows="2" style="min-height:60px;"></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.4</span><span>Backup power source?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="backup_power" value="UPS"> Yes &mdash; UPS</label>
+      <label class="check-item"><input type="radio" name="backup_power" value="Generator"> Yes &mdash; Generator</label>
+      <label class="check-item"><input type="radio" name="backup_power" value="Both"> Yes &mdash; Both</label>
+      <label class="check-item"><input type="radio" name="backup_power" value="No"> No</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.5</span><span>Work environment?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="work_env" value="Private office"> Dedicated home office (private room)</label>
+      <label class="check-item"><input type="radio" name="work_env" value="Shared room"> Shared room / common area</label>
+      <label class="check-item"><input type="radio" name="work_env" value="Co-working"> Co-working space</label>
+      <label class="check-item"><input type="radio" name="work_env" value="Other"> Other</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="noise_level" placeholder="Describe noise & privacy level..." rows="2" style="min-height:60px;"></textarea></div>
+  </div>
+
+  <h3 style="color:var(--navy);margin:24px 0 16px;font-size:1.05rem;">B. Current Workload & Availability</h3>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.6</span><span>Do you currently have other clients or a full-time job?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="other_clients" value="VA clients"> Yes &mdash; other VA/freelance clients</label>
+      <label class="check-item"><input type="radio" name="other_clients" value="FT + VA"> Yes &mdash; full-time job + VA on the side</label>
+      <label class="check-item"><input type="radio" name="other_clients" value="PT + VA"> Yes &mdash; part-time job + VA on the side</label>
+      <label class="check-item"><input type="radio" name="other_clients" value="Fully available"> No &mdash; fully available</label>
+    </div>
+    <div class="warn-box" style="margin-left:38px;margin-right:0;">Having other clients is 100% okay. We just need to know so we can plan. This will NOT be used against you.</div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.7</span><span>If you have other clients, describe the work type and hours/week. No need to name clients.</span></div>
+    <div class="answer-area"><textarea name="client_details" class="large" placeholder='Example: "Client 1 — Medical billing for dermatology, 15 hrs/week"'></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.8</span><span>Hours/week available for this role?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="avail_hours" value="10-15"> 10&ndash;15 hrs/week</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="15-20"> 15&ndash;20 hrs/week</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="20-30"> 20&ndash;30 hrs/week</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="30-40"> 30&ndash;40 hrs/week (full-time)</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="40+"> 40+ hrs/week</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.9</span><span>Typical working hours? (Include timezone)</span></div>
+    <div class="answer-area"><input type="text" class="text-input" name="working_hours" placeholder="e.g., 9 PM – 6 AM PHT (US Eastern hours)"></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.10</span><span>If you have other clients and get this role, how will you manage your time? Be specific.</span></div>
+    <div class="answer-area"><textarea name="time_management" class="large" placeholder="Your strategy..."></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.11</span><span>Ever let go of a client or been let go? What happened and what did you learn?</span></div>
+    <div class="answer-area"><textarea name="letgo_experience" class="large" placeholder="Your answer..."></textarea></div>
+  </div>
+
+  <h3 style="color:var(--navy);margin:24px 0 16px;font-size:1.05rem;">C. Experience & Self-Assessment</h3>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.12</span><span>Years of healthcare/medical field experience?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="years_exp" value="<1"> Less than 1 year</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="1-3"> 1&ndash;3 years</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="3-5"> 3&ndash;5 years</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="5-10"> 5&ndash;10 years</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="10+"> 10+ years</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.13</span><span>Tools/software you&rsquo;ve ACTUALLY used at work? (Not YouTube tutorials)</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="checkbox" name="tools" value="EHR/EMR"> EHR/EMR systems</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="PM software"> Practice management software</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Trello"> Trello</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="FreshBooks"> FreshBooks or similar</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Cloud storage"> Dropbox / Google Drive / OneDrive</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="E-sign"> PandaDoc / DocuSign</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Slack"> Slack</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Video"> Zoom / Google Meet</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="MS Office"> Microsoft Office Suite</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Scheduling"> Calendly or similar</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="CRM"> CRM systems</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Billing"> Billing/claims software</label>
+    </div>
+    <div class="field-row" style="margin-top:8px;"><span class="field-label">Specify which ones:</span><input type="text" class="text-input" name="tools_detail" placeholder="e.g., eClinicalWorks, Availity..."></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.14</span><span>Biggest weakness in virtual work? Be honest.</span></div>
+    <div class="answer-area"><textarea name="weakness" class="large" placeholder="Your answer..."></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.15</span><span>Why should we pick you over someone with similar experience?</span></div>
+    <div class="answer-area"><textarea name="why_you" class="large" placeholder="Your answer..."></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.16</span><span>Expected rate (USD/hr)?</span></div>
+    <div class="field-row"><span class="field-label">$</span><input type="text" class="text-input" name="rate" placeholder="e.g., 7" style="max-width:120px;"><span style="font-size:0.85rem;color:var(--text-light);">per hour</span></div>
+    <p style="font-size:0.83rem;color:var(--text-light);padding-left:38px;font-style:italic;">Be reasonable &mdash; not too low, not too high.</p>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.17</span><span>Comfortable being paid via Wise?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="wise" value="Yes"> Yes</label>
+      <label class="check-item"><input type="radio" name="wise" value="No"> No &mdash; I prefer another method</label>
+      <label class="check-item"><input type="radio" name="wise" value="Will set up"> Never used Wise but willing to set it up</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.18</span><span>Anything else you want us to know?</span></div>
+    <div class="answer-area"><textarea name="anything_else" class="large" placeholder="Optional..."></textarea></div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-title">PART 2: Skills Assessment</div>
+  <div class="section-subtitle">WC / PI / AMA Guides 5th Edition / MRR &mdash; 25 Questions</div>
+  <h3 class="section-heading">Section A: Multiple Choice (1 point each)</h3>
+  <p class="section-note">This is the hardest test. If you haven&rsquo;t worked with AMA Guides or CA WC, say so honestly.</p><div class="question">
+    <div class="q-text"><span class="q-number">1</span><span>MMI stands for:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q1" value="A"> A) Maximum Medical Improvement &mdash; condition stabilized, not expected to significantly improve</label>
+      <label class="choice-item"><input type="radio" name="q1" value="B"> B) Minimum Medical Intervention</label>
+      <label class="choice-item"><input type="radio" name="q1" value="C"> C) Maximum Medical Insurance</label>
+      <label class="choice-item"><input type="radio" name="q1" value="D"> D) Medical Malpractice Investigation</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">2</span><span>TRICK: MMI means the patient is fully healed. True or false?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q2" value="A"> A) True</label>
+      <label class="choice-item"><input type="radio" name="q2" value="B"> B) False &mdash; MMI means condition plateaued. Patient may still have permanent pain and need maintenance care.</label>
+      <label class="choice-item"><input type="radio" name="q2" value="C"> C) True for WC only</label>
+      <label class="choice-item"><input type="radio" name="q2" value="D"> D) False &mdash; MMI is a billing term</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">3</span><span>AMA Guides 5th Ed DRE method for spine has how many categories?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q3" value="A"> A) 3</label>
+      <label class="choice-item"><input type="radio" name="q3" value="B"> B) 5 (DRE I through V)</label>
+      <label class="choice-item"><input type="radio" name="q3" value="C"> C) 10</label>
+      <label class="choice-item"><input type="radio" name="q3" value="D"> D) 2 &mdash; injured and not</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">4</span><span>Apportionment means:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q4" value="A"> A) Billing the patient</label>
+      <label class="choice-item"><input type="radio" name="q4" value="B"> B) Allocating PD between industrial and non-industrial causes based on medical evidence</label>
+      <label class="choice-item"><input type="radio" name="q4" value="C"> C) Dividing a case between attorneys</label>
+      <label class="choice-item"><input type="radio" name="q4" value="D"> D) Scheduling proportionally</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">5</span><span>Difference between QME and AME:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q5" value="A"> A) QME from state panel when parties can&rsquo;t agree; AME mutually agreed upon by both sides</label>
+      <label class="choice-item"><input type="radio" name="q5" value="B"> B) QME does treatment; AME does evaluations</label>
+      <label class="choice-item"><input type="radio" name="q5" value="C"> C) Same thing</label>
+      <label class="choice-item"><input type="radio" name="q5" value="D"> D) AME only for PI</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">6</span><span>Almaraz/Guzman refers to:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q6" value="A"> A) Pharmaceutical company</label>
+      <label class="choice-item"><input type="radio" name="q6" value="B"> B) CA case allowing physicians to deviate from strict DRE/ROM methods and use analogous chapters</label>
+      <label class="choice-item"><input type="radio" name="q6" value="C"> C) Medical coding system</label>
+      <label class="choice-item"><input type="radio" name="q6" value="D"> D) WC insurance carrier</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">7</span><span>ACOEM stands for and is used for:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q7" value="A"> A) American College of Occupational and Environmental Medicine &mdash; evidence-based treatment guidelines for CA WC</label>
+      <label class="choice-item"><input type="radio" name="q7" value="B"> B) American College of Emergency Medicine</label>
+      <label class="choice-item"><input type="radio" name="q7" value="C"> C) Association of Certified Orthopedic Evaluators</label>
+      <label class="choice-item"><input type="radio" name="q7" value="D"> D) Advanced Certification in Occupational Examinations</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">8</span><span>Utilization Review (UR) in WC is:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q8" value="A"> A) Review of insurance utilization</label>
+      <label class="choice-item"><input type="radio" name="q8" value="B"> B) WC carrier reviews treatment against evidence-based guidelines (ACOEM) to approve, modify, or deny</label>
+      <label class="choice-item"><input type="radio" name="q8" value="C"> C) Review by employer</label>
+      <label class="choice-item"><input type="radio" name="q8" value="D"> D) Patient satisfaction survey</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">9</span><span>IMR (Independent Medical Review) &mdash; what is it and when triggered?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q9" value="A"> A) Treating physician reviews own records</label>
+      <label class="choice-item"><input type="radio" name="q9" value="B"> B) Independent review of UR denial by unaffiliated physician; triggered when worker/physician disputes UR decision</label>
+      <label class="choice-item"><input type="radio" name="q9" value="C"> C) Employer HR review</label>
+      <label class="choice-item"><input type="radio" name="q9" value="D"> D) Annual state checkup</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">10</span><span>AMA Guides: difference between impairment and disability?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q10" value="A"> A) Same concept</label>
+      <label class="choice-item"><input type="radio" name="q10" value="B"> B) Impairment = medical loss of function; disability = impact on ability to meet life/work demands (considers age, occupation, education)</label>
+      <label class="choice-item"><input type="radio" name="q10" value="C"> C) Impairment is temporary; disability is permanent</label>
+      <label class="choice-item"><input type="radio" name="q10" value="D"> D) Disability is medical; impairment is legal</label>
+    </div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section B: Terminology &mdash; Define and Explain (3 points each)</h3>
+  <p class="section-note">Define AND explain the context. Write &ldquo;I don&rsquo;t know&rdquo; if unsure.</p><div class="question">
+    <div class="q-text"><span class="q-number">11</span><span>PD (Permanent Disability) &mdash; including how it&rsquo;s calculated in California</span></div>
+    <div class="answer-area"><textarea name="q11" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">12</span><span>PQME (Panel Qualified Medical Evaluator)</span></div>
+    <div class="answer-area"><textarea name="q12" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">13</span><span>WPI (Whole Person Impairment) vs. PD Rating</span></div>
+    <div class="answer-area"><textarea name="q13" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">14</span><span>MTUS (Medical Treatment Utilization Schedule)</span></div>
+    <div class="answer-area"><textarea name="q14" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">15</span><span>Labor Code &sect;4660.1 (PD rating in CA WC)</span></div>
+    <div class="answer-area"><textarea name="q15" class="xl" placeholder="Your answer..."></textarea></div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section C: AMA Guides Application (5 points each)</h3>
+  <div class="question">
+    <div class="q-text"><span class="q-number">16</span><span>Explain the DRE method for lumbar spine: list each category (I&ndash;V), criteria, and WPI percentage range.</span></div>
+    <div class="answer-area"><textarea name="q16" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">17</span><span>When would a physician use ROM method instead of DRE for spine? When does AMA Guides allow it? How does Almaraz/Guzman affect this?</span></div>
+    <div class="answer-area"><textarea name="q17" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">18</span><span>A cover letter requests: &ldquo;Determine the examinee&rsquo;s complete medical history; diagnosis; MMI/TTD; permanent disability; work restrictions; impairment rating pursuant to AMA Guides; Almaraz/Guzman; future medical treatment; apportionment; referral to another specialty; need for diagnostic studies.&rdquo; For EACH item: (a) what it means, (b) why attorney requests it, (c) where in records to find it.</span></div>
+    <div class="answer-area"><textarea name="q18" class="xl" placeholder="Your answer..."></textarea></div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section D: Advanced Scenarios (8 points each)</h3>
+  <div class="question">
+    <div class="scenario"><strong>SCENARIO:</strong> QME evaluation. 52-y/o warehouse worker, DOI 05/20/2022: lumbar spine, left shoulder, bilateral knees. Records from 2019&ndash;present. Key: 2019 MRI mild L4-L5 bulge (asymptomatic); DOI ER &mdash; fell off forklift; post-injury MRI &mdash; L4-L5 worsened + new L5-S1 + left rotator cuff tear; UR denied shoulder surgery; IMR upheld denial; lumbar fusion 01/2023; QME must address MMI, WPI, apportionment, restrictions, future treatment.</div>
+    <div class="q-text"><span class="q-number">19</span><span>Organize and summarize for QME. Structure as actual summary outline with headers, key data, and notes on the apportionment issue.</span></div>
+    <div class="answer-area"><textarea name="q19" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="scenario"><strong>SCENARIO:</strong> Attorney: &ldquo;The IME doctor gave 0% WPI for the shoulder. I think it&rsquo;s wrong. Review the IME and records and tell me if there&rsquo;s a basis for challenging it.&rdquo;</div>
+    <div class="q-text"><span class="q-number">20</span><span>First: CAN you, as a record reviewer, opine on whether the WPI is wrong? Why/why not? Second: What CAN you do? What would you look for?</span></div>
+    <div class="answer-area"><textarea name="q20" class="xl" placeholder="Your answer..."></textarea></div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section E: True or False with Explanation (2 points each)</h3>
+  <div class="question">
+    <div class="q-text"><span class="q-number">21</span><span>AMA Guides 5th Ed is used in all 50 states for WC impairment ratings.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q21_tf" value="True"> True</label>
+      <label><input type="radio" name="q21_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q21_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">22</span><span>Apportionment can result in a 0% industrial PD rating even with a legitimate work injury.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q22_tf" value="True"> True</label>
+      <label><input type="radio" name="q22_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q22_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">23</span><span>A QME report is a treatment plan.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q23_tf" value="True"> True</label>
+      <label><input type="radio" name="q23_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q23_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">24</span><span>Under CA WC, the employer can choose which doctor the injured worker sees.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q24_tf" value="True"> True</label>
+      <label><input type="radio" name="q24_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q24_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">25</span><span>&ldquo;Future medical treatment&rdquo; in WC means unlimited treatment forever after MMI.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q25_tf" value="True"> True</label>
+      <label><input type="radio" name="q25_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q25_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div></div>
+
+<div class="submit-section">
+  <p style="font-weight:600;color:var(--navy);margin-bottom:8px;">Ready to submit?</p>
+  <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:20px;">Double-check your answers. Once submitted, you cannot make changes.</p>
+  <button type="button" class="btn-submit" onclick="submitTest()">Submit My Test &check;</button>
+  <p class="submit-note">Your answers will be sent to imhiringva@proton.me</p>
+</div>
+
+</form>
+
+<div class="success-screen" id="successScreen">
+  <div class="checkmark">✅</div>
+  <h2>Test Submitted Successfully!</h2>
+  <p>Your answers have been sent. We will review and get back to you within 5&ndash;7 business days.</p>
+  <p style="margin-top:16px;font-size:0.9rem;color:var(--text-light);">Thank you for your time and effort.</p>
+</div>
+
+<div class="footer">&copy; 2026 I&rsquo;m Hiring VA &mdash; Confidential Skills Assessment</div>
+
+<script>
+window.TEST_CONFIG = { title: "WC / PI / AMA Guides / MRR", timeMinutes: 120, emailServiceId: "service_kb9sctj", emailTemplateId: "template_5bncogx", emailPublicKey: "2ezKz45u75xrgpH-s" };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    var pk = window.TEST_CONFIG && window.TEST_CONFIG.emailPublicKey;
+    if (pk) emailjs.init(pk);
+  })();
+</script>
+<script src="test-engine.js"></script>
+</body>
+</html>

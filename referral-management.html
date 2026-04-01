@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Assessment &ndash; Referral Management | I&rsquo;m Hiring VA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">I&rsquo;m Hiring VA</div>
+  <h1>Skills Assessment</h1>
+  <div class="subtitle">Referral Management</div>
+</div>
+
+<div class="container">
+  <div class="timer-bar" id="timerBar" style="display:none;">
+    <div class="timer-label">⏱ Time Remaining</div>
+    <div class="timer-display" id="timerDisplay">01:15:00</div>
+  </div>
+</div>
+
+<div class="start-screen" id="startScreen">
+  <h2>Before You Begin</h2>
+  <div class="instructions-box">
+    <ul>
+      <li>This test has <strong>Part 1 (About You)</strong> + <strong>Part 2 (Skills Assessment)</strong>.</li>
+      <li>Time limit: <strong>75 minutes</strong>. Timer starts when you click Start.</li>
+      <li>Do <strong>NOT</strong> use Google, ChatGPT, or any reference materials.</li>
+      <li>Answer in <strong>your own words</strong>. AI-generated answers = disqualification.</li>
+      <li>Be specific. Vague answers score zero.</li>
+      <li>If you don&rsquo;t know, say so honestly.</li>
+      <li>Passing score: <strong>85%</strong></li>
+    </ul>
+  </div>
+  <div class="warn-box">⚠️ Once you start, the timer cannot be paused. Make sure you have 75 uninterrupted minutes.</div>
+  <button class="btn-start" onclick="startTest()">Start Test &rarr;</button>
+</div>
+
+<div class="sending-overlay" id="sendingOverlay"><div class="spinner"></div>Submitting your test&hellip;</div>
+
+<form class="test-form container" id="testForm">
+
+
+<div class="section">
+  <div class="section-title">PART 1: About You</div>
+  <div class="section-subtitle">This replaces a traditional interview. There are no wrong answers — we value honesty. Having other clients will NOT be held against you. Dishonesty WILL.</div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">•</span><span>Your full name <span class="required">*</span></span></div>
+    <input type="text" class="text-input" name="full_name" required placeholder="Full name">
+  </div>
+  <div class="question">
+    <div class="q-text"><span class="q-number">•</span><span>Email address <span class="required">*</span></span></div>
+    <input type="email" class="text-input" name="email" required placeholder="Email address">
+  </div>
+
+  <h3 style="color:var(--navy);margin:24px 0 16px;font-size:1.05rem;">A. Your Work Setup</h3>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.1</span><span>What device(s) do you use for work?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="checkbox" name="device" value="Desktop"> Desktop computer</label>
+      <label class="check-item"><input type="checkbox" name="device" value="Laptop"> Laptop</label>
+      <label class="check-item"><input type="checkbox" name="device" value="Tablet"> Tablet</label>
+      <label class="check-item"><input type="checkbox" name="device" value="Phone only"> Phone only</label>
+    </div>
+    <div class="field-row" style="margin-top:10px;"><span class="field-label">Specs (if known):</span><input type="text" class="text-input" name="device_specs" placeholder="RAM, processor, etc."></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.2</span><span>Internet connection type and speed?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="internet" value="Fiber"> Fiber</label>
+      <label class="check-item"><input type="radio" name="internet" value="DSL"> DSL</label>
+      <label class="check-item"><input type="radio" name="internet" value="Mobile data"> Mobile data / pocket WiFi</label>
+      <label class="check-item"><input type="radio" name="internet" value="Broadband"> Broadband (cable)</label>
+      <label class="check-item"><input type="radio" name="internet" value="Unknown"> I don&rsquo;t know</label>
+    </div>
+    <div class="field-row" style="margin-top:10px;"><span class="field-label">Speed (Mbps):</span><input type="text" class="text-input" name="internet_speed" placeholder="e.g., 50 Mbps"></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.3</span><span>Backup internet connection?</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="backup_internet" value="Yes"> Yes</label>
+      <label><input type="radio" name="backup_internet" value="No"> No</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="backup_internet_detail" placeholder="If yes, describe..." rows="2" style="min-height:60px;"></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.4</span><span>Backup power source?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="backup_power" value="UPS"> Yes &mdash; UPS</label>
+      <label class="check-item"><input type="radio" name="backup_power" value="Generator"> Yes &mdash; Generator</label>
+      <label class="check-item"><input type="radio" name="backup_power" value="Both"> Yes &mdash; Both</label>
+      <label class="check-item"><input type="radio" name="backup_power" value="No"> No</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.5</span><span>Work environment?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="work_env" value="Private office"> Dedicated home office (private room)</label>
+      <label class="check-item"><input type="radio" name="work_env" value="Shared room"> Shared room / common area</label>
+      <label class="check-item"><input type="radio" name="work_env" value="Co-working"> Co-working space</label>
+      <label class="check-item"><input type="radio" name="work_env" value="Other"> Other</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="noise_level" placeholder="Describe noise & privacy level..." rows="2" style="min-height:60px;"></textarea></div>
+  </div>
+
+  <h3 style="color:var(--navy);margin:24px 0 16px;font-size:1.05rem;">B. Current Workload & Availability</h3>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.6</span><span>Do you currently have other clients or a full-time job?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="other_clients" value="VA clients"> Yes &mdash; other VA/freelance clients</label>
+      <label class="check-item"><input type="radio" name="other_clients" value="FT + VA"> Yes &mdash; full-time job + VA on the side</label>
+      <label class="check-item"><input type="radio" name="other_clients" value="PT + VA"> Yes &mdash; part-time job + VA on the side</label>
+      <label class="check-item"><input type="radio" name="other_clients" value="Fully available"> No &mdash; fully available</label>
+    </div>
+    <div class="warn-box" style="margin-left:38px;margin-right:0;">Having other clients is 100% okay. We just need to know so we can plan. This will NOT be used against you.</div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.7</span><span>If you have other clients, describe the work type and hours/week. No need to name clients.</span></div>
+    <div class="answer-area"><textarea name="client_details" class="large" placeholder='Example: "Client 1 — Medical billing for dermatology, 15 hrs/week"'></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.8</span><span>Hours/week available for this role?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="avail_hours" value="10-15"> 10&ndash;15 hrs/week</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="15-20"> 15&ndash;20 hrs/week</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="20-30"> 20&ndash;30 hrs/week</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="30-40"> 30&ndash;40 hrs/week (full-time)</label>
+      <label class="check-item"><input type="radio" name="avail_hours" value="40+"> 40+ hrs/week</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.9</span><span>Typical working hours? (Include timezone)</span></div>
+    <div class="answer-area"><input type="text" class="text-input" name="working_hours" placeholder="e.g., 9 PM – 6 AM PHT (US Eastern hours)"></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.10</span><span>If you have other clients and get this role, how will you manage your time? Be specific.</span></div>
+    <div class="answer-area"><textarea name="time_management" class="large" placeholder="Your strategy..."></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.11</span><span>Ever let go of a client or been let go? What happened and what did you learn?</span></div>
+    <div class="answer-area"><textarea name="letgo_experience" class="large" placeholder="Your answer..."></textarea></div>
+  </div>
+
+  <h3 style="color:var(--navy);margin:24px 0 16px;font-size:1.05rem;">C. Experience & Self-Assessment</h3>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.12</span><span>Years of healthcare/medical field experience?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="years_exp" value="<1"> Less than 1 year</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="1-3"> 1&ndash;3 years</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="3-5"> 3&ndash;5 years</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="5-10"> 5&ndash;10 years</label>
+      <label class="check-item"><input type="radio" name="years_exp" value="10+"> 10+ years</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.13</span><span>Tools/software you&rsquo;ve ACTUALLY used at work? (Not YouTube tutorials)</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="checkbox" name="tools" value="EHR/EMR"> EHR/EMR systems</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="PM software"> Practice management software</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Trello"> Trello</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="FreshBooks"> FreshBooks or similar</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Cloud storage"> Dropbox / Google Drive / OneDrive</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="E-sign"> PandaDoc / DocuSign</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Slack"> Slack</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Video"> Zoom / Google Meet</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="MS Office"> Microsoft Office Suite</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Scheduling"> Calendly or similar</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="CRM"> CRM systems</label>
+      <label class="check-item"><input type="checkbox" name="tools" value="Billing"> Billing/claims software</label>
+    </div>
+    <div class="field-row" style="margin-top:8px;"><span class="field-label">Specify which ones:</span><input type="text" class="text-input" name="tools_detail" placeholder="e.g., eClinicalWorks, Availity..."></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.14</span><span>Biggest weakness in virtual work? Be honest.</span></div>
+    <div class="answer-area"><textarea name="weakness" class="large" placeholder="Your answer..."></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.15</span><span>Why should we pick you over someone with similar experience?</span></div>
+    <div class="answer-area"><textarea name="why_you" class="large" placeholder="Your answer..."></textarea></div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.16</span><span>Expected rate (USD/hr)?</span></div>
+    <div class="field-row"><span class="field-label">$</span><input type="text" class="text-input" name="rate" placeholder="e.g., 7" style="max-width:120px;"><span style="font-size:0.85rem;color:var(--text-light);">per hour</span></div>
+    <p style="font-size:0.83rem;color:var(--text-light);padding-left:38px;font-style:italic;">Be reasonable &mdash; not too low, not too high.</p>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.17</span><span>Comfortable being paid via Wise?</span></div>
+    <div class="check-group">
+      <label class="check-item"><input type="radio" name="wise" value="Yes"> Yes</label>
+      <label class="check-item"><input type="radio" name="wise" value="No"> No &mdash; I prefer another method</label>
+      <label class="check-item"><input type="radio" name="wise" value="Will set up"> Never used Wise but willing to set it up</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><span class="q-number">1.18</span><span>Anything else you want us to know?</span></div>
+    <div class="answer-area"><textarea name="anything_else" class="large" placeholder="Optional..."></textarea></div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-title">PART 2: Skills Assessment</div>
+  <div class="section-subtitle">Referral Management &mdash; 19 Questions</div>
+  <h3 class="section-heading">Section A: Multiple Choice (1 point each)</h3>
+  <div class="question">
+    <div class="q-text"><span class="q-number">1</span><span>Patient with HMO wants to see a dermatologist. What must happen FIRST?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q1" value="A"> A) Patient calls dermatologist directly</label>
+      <label class="choice-item"><input type="radio" name="q1" value="B"> B) PCP must issue a referral; depending on plan, PA may also be required</label>
+      <label class="choice-item"><input type="radio" name="q1" value="C"> C) Patient switches to PPO</label>
+      <label class="choice-item"><input type="radio" name="q1" value="D"> D) Dermatologist submits the referral</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">2</span><span>Referral submitted but specialist says never received. Appointment in 2 days. What do you do?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q2" value="A"> A) Tell patient to reschedule</label>
+      <label class="choice-item"><input type="radio" name="q2" value="B"> B) Re-send/re-fax immediately, confirm receipt by phone, document with timestamp and contact name</label>
+      <label class="choice-item"><input type="radio" name="q2" value="C"> C) Wait for system to update</label>
+      <label class="choice-item"><input type="radio" name="q2" value="D"> D) Cancel and start a new referral</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">3</span><span>What is a &ldquo;stat referral&rdquo;?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q3" value="A"> A) Referral for statistical reporting</label>
+      <label class="choice-item"><input type="radio" name="q3" value="B"> B) Urgent referral requiring patient to be seen within 24&ndash;72 hours</label>
+      <label class="choice-item"><input type="radio" name="q3" value="C"> C) Referral to a state agency</label>
+      <label class="choice-item"><input type="radio" name="q3" value="D"> D) Automatically approved referral</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">4</span><span>TRICK: A PPO plan NEVER requires referrals. True or false?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q4" value="A"> A) True</label>
+      <label class="choice-item"><input type="radio" name="q4" value="B"> B) Mostly true but not absolute &mdash; some PPOs have carve-outs or tiered benefits with referral</label>
+      <label class="choice-item"><input type="radio" name="q4" value="C"> C) False &mdash; PPOs always require referrals</label>
+      <label class="choice-item"><input type="radio" name="q4" value="D"> D) True &mdash; only HMOs require referrals</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">5</span><span>Referral expires in 90 days. Patient calls on day 85, can&rsquo;t get appointment. What do you do?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q5" value="A"> A) Tell them they have 5 more days</label>
+      <label class="choice-item"><input type="radio" name="q5" value="B"> B) Contact specialist to expedite AND prepare a referral extension as backup</label>
+      <label class="choice-item"><input type="radio" name="q5" value="C"> C) Tell them to get a new referral</label>
+      <label class="choice-item"><input type="radio" name="q5" value="D"> D) Nothing &mdash; it&rsquo;s the patient&rsquo;s responsibility</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">6</span><span>&ldquo;Closing the loop&rdquo; means:</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q6" value="A"> A) Deleting the referral</label>
+      <label class="choice-item"><input type="radio" name="q6" value="B"> B) Confirming patient saw specialist + report sent back to PCP + PCP reviewed findings</label>
+      <label class="choice-item"><input type="radio" name="q6" value="C"> C) Sending a satisfaction survey</label>
+      <label class="choice-item"><input type="radio" name="q6" value="D"> D) Filing without follow-up</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">7</span><span>Role of ICD-10 codes on a referral form?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q7" value="A"> A) Not needed</label>
+      <label class="choice-item"><input type="radio" name="q7" value="B"> B) Communicate diagnosis, support medical necessity, ensure proper claims processing</label>
+      <label class="choice-item"><input type="radio" name="q7" value="C"> C) Only for billing after the visit</label>
+      <label class="choice-item"><input type="radio" name="q7" value="D"> D) Replace clinical notes</label>
+    </div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">8</span><span>Specialist is out-of-network but PCP wants to refer there (no in-network alternative). What do you explore?</span></div>
+    <div class="choices">
+      <label class="choice-item"><input type="radio" name="q8" value="A"> A) Tell PCP it&rsquo;s impossible</label>
+      <label class="choice-item"><input type="radio" name="q8" value="B"> B) Request a single case agreement (SCA) or gap exception from insurance</label>
+      <label class="choice-item"><input type="radio" name="q8" value="C"> C) Bill patient at full OON rates</label>
+      <label class="choice-item"><input type="radio" name="q8" value="D"> D) Refer to different specialty</label>
+    </div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section B: Short Answer (4 points each)</h3>
+  <div class="question">
+    <div class="q-text"><span class="q-number">9</span><span>Describe the COMPLETE lifecycle of a referral from PCP decision to &ldquo;loop closed.&rdquo; Every step, every party, every failure point.</span></div>
+    <div class="answer-area"><textarea name="q9" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">10</span><span>You manage 60+ referrals/week across 5 providers. Describe your tracking system: data tracked, follow-up protocol, escalation, metrics.</span></div>
+    <div class="answer-area"><textarea name="q10" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">11</span><span>What is a single case agreement (SCA)? When would you request one? What info does insurance need?</span></div>
+    <div class="answer-area"><textarea name="q11" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">12</span><span>Patient is angry: &ldquo;I&rsquo;ve been waiting 3 weeks and nobody told me my referral was denied!&rdquo; Write EXACTLY how you&rsquo;d handle this &mdash; word for word &mdash; plus corrective actions.</span></div>
+    <div class="answer-area"><textarea name="q12" class="xl" placeholder="Your answer..."></textarea></div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section C: Scenarios (6 points each)</h3>
+  <div class="question">
+    <div class="scenario"><strong>SCENARIO:</strong> Dr. Reyes (PCP) sends referrals for Patient A to: (1) Cardiology &mdash; chest pain (urgent), (2) Endocrinology &mdash; diabetes (routine), (3) Orthopedics &mdash; knee pain (routine). Cigna HMO requiring referrals + PA. Patient works full-time, only available Wednesdays.</div>
+    <div class="q-text"><span class="q-number">13</span><span>Walk through processing all three simultaneously: prioritization, PA submissions, scheduling, patient communication, tracking.</span></div>
+    <div class="answer-area"><textarea name="q13" class="xl" placeholder="Your answer..."></textarea></div>
+  </div><div class="question">
+    <div class="scenario"><strong>SCENARIO:</strong> 12 referrals from last month never followed up: 4 patients never got appointments, 3 saw specialist but no report returned, 2 denied and patient not notified, 3 unknown status.</div>
+    <div class="q-text"><span class="q-number">14</span><span>How do you clean up this backlog? Triage, communication plan, and process changes to prevent recurrence.</span></div>
+    <div class="answer-area"><textarea name="q14" class="xl" placeholder="Your answer..."></textarea></div>
+  </div></div>
+<div class="section">
+  <h3 class="section-heading">Section D: True or False with Explanation (2 points each)</h3>
+  <div class="question">
+    <div class="q-text"><span class="q-number">15</span><span>A referral to an out-of-network provider will always result in the patient paying more.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q15_tf" value="True"> True</label>
+      <label><input type="radio" name="q15_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q15_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">16</span><span>The referring provider is responsible for ensuring the referral is received and acted upon.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q16_tf" value="True"> True</label>
+      <label><input type="radio" name="q16_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q16_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">17</span><span>If a referral is denied, the patient has no options and must pay out of pocket.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q17_tf" value="True"> True</label>
+      <label><input type="radio" name="q17_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q17_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">18</span><span>Medicare patients always need a referral before seeing a specialist.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q18_tf" value="True"> True</label>
+      <label><input type="radio" name="q18_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q18_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div><div class="question">
+    <div class="q-text"><span class="q-number">19</span><span>A referral can be modified or updated after submission.</span></div>
+    <div class="tf-group">
+      <label><input type="radio" name="q19_tf" value="True"> True</label>
+      <label><input type="radio" name="q19_tf" value="False"> False</label>
+    </div>
+    <div class="answer-area" style="margin-top:8px;"><textarea name="q19_explain" placeholder="Explain why..." rows="3" style="min-height:80px;"></textarea></div>
+  </div></div>
+
+<div class="submit-section">
+  <p style="font-weight:600;color:var(--navy);margin-bottom:8px;">Ready to submit?</p>
+  <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:20px;">Double-check your answers. Once submitted, you cannot make changes.</p>
+  <button type="button" class="btn-submit" onclick="submitTest()">Submit My Test &check;</button>
+  <p class="submit-note">Your answers will be sent to imhiringva@proton.me</p>
+</div>
+
+</form>
+
+<div class="success-screen" id="successScreen">
+  <div class="checkmark">✅</div>
+  <h2>Test Submitted Successfully!</h2>
+  <p>Your answers have been sent. We will review and get back to you within 5&ndash;7 business days.</p>
+  <p style="margin-top:16px;font-size:0.9rem;color:var(--text-light);">Thank you for your time and effort.</p>
+</div>
+
+<div class="footer">&copy; 2026 I&rsquo;m Hiring VA &mdash; Confidential Skills Assessment</div>
+
+<script>
+window.TEST_CONFIG = { title: "Referral Management", timeMinutes: 75, emailServiceId: "service_kb9sctj", emailTemplateId: "template_5bncogx", emailPublicKey: "2ezKz45u75xrgpH-s" };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (function() {
+    var pk = window.TEST_CONFIG && window.TEST_CONFIG.emailPublicKey;
+    if (pk) emailjs.init(pk);
+  })();
+</script>
+<script src="test-engine.js"></script>
+</body>
+</html>
